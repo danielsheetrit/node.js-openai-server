@@ -10,7 +10,7 @@ import cors from 'cors';
 import './process';
 
 // routes
-import userRouter from './routes/users.route';
+import openaiRoute from './routes/openai.route';
 
 // middlewares
 import { errorLogger, errorAction } from './middleware/error';
@@ -18,7 +18,7 @@ import { errorLogger, errorAction } from './middleware/error';
 // ----------------------------------------------------------------
 
 const app: Application = express();
-const port = process.env.PORT ? parseInt(process.env.PORT, 10) : 3030;
+const port = process.env.PORT ? parseInt(process.env.PORT, 10) : 3050;
 
 app.use(cors({ origin: '*' }));
 app.use(express.json());
@@ -32,7 +32,7 @@ export const httpTerminator = createHttpTerminator({
 
 // ----------------------------------------------------------------
 
-app.use('/users', userRouter);
+app.use('/openai', openaiRoute);
 
 // ----------------------------------------------------------------
 
@@ -47,22 +47,3 @@ app.use('*', (_req: Request, res: Response) => {
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
-
-// QA
-// ----------------------------------------------------------------
-
-// app.use('/', async (req: Request, res: Response, next: NextFunction) => {
-//   const lala = () => {
-//     return new Promise((_, reject) => {
-//       reject('This is an error code');
-//     });
-//   };
-
-//   const blabla = await lala();
-
-//   // throw new AppError({
-//   //   status: HttpCode.BAD_REQUEST,
-//   //   message: 'You must be logged in',
-//   //   funcName: '/',
-//   // });
-// });

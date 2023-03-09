@@ -108,3 +108,5 @@ package-lock.json
 
 .vscode
 # .eslintrc
+
+.env
