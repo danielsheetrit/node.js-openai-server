@@ -1,1 +1,1 @@
-# nodejs-openai-server
+# nodejs-typescript-openai-server
